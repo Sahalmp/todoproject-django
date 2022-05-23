@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<form method="POST">
+    {% csrf_token %}
+    <h3> Are you sure <strong>{{task.name}}</strong> is done???</h3>
+    <input type="submit" class="btn btn-danger" value="delete">
+</form>
+</div>
+{% endblock %}

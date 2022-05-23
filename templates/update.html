@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card shadow dark ">
+        <div class="card-header">
+            <div class="card-title d-flex justify-content-center">
+                <h4>Task Update</h4>
+            </div>
+            <div class="card-body d-flex justify-content-center">
+                <form method="POST">
+                    <table class="table d-flex justify-content-center">
+                        {% csrf_token %}
+                        {{form.as_table}}
+                    </table>
+                    <input class="btn btn-warning shadow dark " type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

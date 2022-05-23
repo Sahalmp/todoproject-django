@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" class="p-3 shadow">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="task" placeholder="Task name"><br>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="priority" class="form-control" placeholder="Enter your Priority"><br>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="date" class="form-control"> <br>
+                </div>
+                <input type="submit" class="btn btn-success ">
+
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-primary mb-2 shadow ">
+                <div class="card-header"><h4>Task to be Completed</h4></div>
+            </div>
+            {% for i in dtask %}
+
+            <div class="card shadow dark">
+                <div class="card-body">
+                    <h6 class="card-title" style="float:right">{{i.date}} </h6>
+                    <h4 class="card-title">{{i.name}}</h4>
+                    <p class="card-text">{{i.priority}}</p>
+
+                    <a href="{% url 'delete' i.id %}" class=" btn btn-danger">Done</a>
+                    <a href="{% url 'update' i.id %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
